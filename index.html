@@ -8,33 +8,1462 @@
 
 <style>
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
 }
 
 body {
-  margin: 0;
-  min-height: 100vh;
-  overflow: hidden;
-  font-family: Arial, sans-serif;
-  color: white;
+    margin: 0;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    color: #fff;
 
-  background:
-    url("IMG_0740.jpeg")
-    center/cover fixed no-repeat;
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.32),
+            rgba(0, 0, 0, 0.42)
+        ),
+        url("IMG_0740.jpeg") center/cover no-repeat;
+
+    position: relative;
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.28);
-  z-index: 0;
+/* ---------- BACKGROUND ---------- */
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(255, 160, 205, 0.18),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(255, 90, 160, 0.15),
+            transparent 35%
+        );
+
+    pointer-events: none;
 }
+
+/* ---------- FLOATING HEARTS ---------- */
+
+.hearts {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.heart-float {
+    position: absolute;
+    bottom: -60px;
+
+    font-size: 20px;
+
+    opacity: 0;
+
+    animation: floatHeart linear infinite;
+}
+
+.heart-float:nth-child(1) {
+    left: 8%;
+    animation-duration: 9s;
+    animation-delay: 1s;
+}
+
+.heart-float:nth-child(2) {
+    left: 23%;
+    animation-duration: 12s;
+    animation-delay: 4s;
+}
+
+.heart-float:nth-child(3) {
+    left: 42%;
+    animation-duration: 10s;
+    animation-delay: 2s;
+}
+
+.heart-float:nth-child(4) {
+    left: 65%;
+    animation-duration: 13s;
+    animation-delay: 5s;
+}
+
+.heart-float:nth-child(5) {
+    left: 82%;
+    animation-duration: 11s;
+    animation-delay: 3s;
+}
+
+@keyframes floatHeart {
+
+    0% {
+        transform:
+            translateY(0)
+            scale(0.7)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 0.8;
+    }
+
+    80% {
+        opacity: 0.5;
+    }
+
+    100% {
+        transform:
+            translateY(-115vh)
+            scale(1.25)
+            rotate(25deg);
+
+        opacity: 0;
+    }
+}
+
+/* ---------- MAIN ---------- */
 
 .wrap {
-  position: relative;
-  z-index: 1;
+    position: relative;
+    z-index: 5;
 
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+}
+
+/* ---------- CARD ---------- */
+
+.card {
+    width: min(92vw, 450px);
+
+    padding: 32px 25px;
+
+    text-align: center;
+
+    border-radius: 32px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.18),
+            rgba(255,255,255,0.06)
+        );
+
+    border: 1px solid rgba(255,255,255,0.35);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,0.45),
+        inset 0 1px 0 rgba(255,255,255,0.2);
+
+    animation: cardAppear 1s ease;
+}
+
+@keyframes cardAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.94);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ---------- HEART ---------- */
+
+.main-heart {
+    width: 82px;
+    height: 82px;
+
+    margin: 0 auto 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 160, 200, 0.20);
+
+    border: 1px solid rgba(255,255,255,0.35);
+
+    box-shadow:
+        0 0 35px rgba(255,100,170,0.45);
+
+    font-size: 43px;
+
+    animation:
+        heartPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes heartPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* ---------- TEXT ---------- */
+
+.small {
+    font-size: 11px;
+    letter-spacing: 3px;
+
+    color: rgba(255,255,255,0.78);
+
+    margin-bottom: 8px;
+}
+
+h1 {
+    margin: 0;
+
+    font-size: clamp(29px, 8vw, 38px);
+
+    font-weight: 700;
+
+    letter-spacing: -1px;
+
+    text-shadow:
+        0 4px 20px rgba(0,0,0,0.35);
+}
+
+.message {
+    margin: 23px 0;
+
+    font-size: 16px;
+
+    line-height: 1.65;
+
+    color: rgba(255,255,255,0.94);
+}
+
+.message b {
+    display: inline-block;
+
+    margin-top: 8px;
+
+    font-size: 19px;
+
+    color: #ffd4e6;
+
+    text-shadow:
+        0 0 15px rgba(255,150,200,0.5);
+}
+
+/* ---------- BUTTONS ---------- */
+
+.buttons {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 14px;
+
+    margin-top: 25px;
+}
+
+button {
+    position: relative;
+
+    min-width: 135px;
+
+    padding: 14px 24px;
+
+    border: 1px solid rgba(255,255,255,0.6);
+
+    border-radius: 50px;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+
+    touch-action: manipulation;
+}
+
+button:active {
+    transform: scale(0.92);
+}
+
+#yes {
+    color: #68163c;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffd1e3,
+            #ff8fbd
+        );
+
+    box-shadow:
+        0 8px 25px rgba(255,100,170,0.4);
+}
+
+#yes:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 35px rgba(255,100,170,0.55);
+}
+
+#no {
+    color: white;
+
+    background:
+        rgba(255,255,255,0.10);
+
+    backdrop-filter: blur(8px);
+}
+
+#no:hover {
+    transform: translateY(-3px);
+
+    background:
+        rgba(255,255,255,0.18);
+}
+
+/* ---------- POPUP ---------- */
+
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+
+    z-index: 100;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(10, 5, 10, 0.65);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.popup-overlay.show {
+    display: flex;
+
+    animation: overlayIn 0.3s ease;
+}
+
+@keyframes overlayIn {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.popup {
+    width: min(90vw, 390px);
+
+    padding: 35px 25px 28px;
+
+    text-align: center;
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.22),
+            rgba(255,255,255,0.08)
+        );
+
+    border: 1px solid rgba(255,255,255,0.4);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,0.55),
+        inset 0 1px 0 rgba(255,255,255,0.25);
+
+    transform: scale(0.8);
+
+    animation: popupIn 0.45s
+        cubic-bezier(.17,.89,.32,1.28)
+        forwards;
+}
+
+@keyframes popupIn {
+
+    to {
+        transform: scale(1);
+    }
+}
+
+.popup-icon {
+    font-size: 55px;
+
+    margin-bottom: 10px;
+
+    animation:
+        heartPulse 1.3s infinite;
+}
+
+.popup h2 {
+    margin: 5px 0 12px;
+
+    font-size: 27px;
+
+    color: #ffd5e6;
+}
+
+.popup p {
+    margin: 0 auto 22px;
+
+    max-width: 310px;
+
+    font-size: 16px;
+
+    line-height: 1.6;
+
+    color: rgba(255,255,255,0.92);
+}
+
+.popup-button {
+    min-width: 160px;
+
+    padding: 13px 25px;
+
+    color: #641638;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffd3e5,
+            #ff91bd
+        );
+
+    box-shadow:
+        0 8px 25px rgba(255,100,170,0.4);
+}
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 420px) {
+
+    .card {
+        padding: 27px 19px;
+        border-radius: 28px;
+    }
+
+    .main-heart {
+        width: 72px;
+        height: 72px;
+        font-size: 38px;
+    }
+
+    .message {
+        font-size: 15px;
+    }
+
+    .buttons {
+        gap: 10px;
+    }
+
+    button {
+        min-width: 125px;
+        padding: 13px 16px;
+    }
+}
+</style>
+</head>
+
+
+<body>
+
+<!-- Floating hearts -->
+<div class="hearts">
+
+    <div class="heart-float">💗</div>
+    <div class="heart-float">💕</div>
+    <div class="heart-float">💖</div>
+    <div class="heart-float">💗</div>
+    <div class="heart-float">💕</div>
+
+</div>
+
+
+<!-- Main page -->
+<div class="wrap">
+
+    <div class="card">
+
+        <div class="main-heart">
+            💗
+        </div>
+
+        <div class="small">
+            A LITTLE QUESTION FOR YOU
+        </div>
+
+        <h1>
+            Sana Thourani
+        </h1>
+
+        <div class="message">
+
+            I don't know how to say this perfectly,
+            <br>
+
+            but I'll try…
+
+            <br><br>
+
+            You are someone I truly admire,
+            and I would love to make some
+            beautiful memories together.
+
+            <br><br>
+
+            <b>
+                Will you be mine? 💕
+            </b>
+
+        </div>
+
+
+        <div class="buttons">
+
+            <button type="button" id="yes">
+                💗 Yes
+            </button>
+
+            <button type="button" id="no">
+                ♡ No
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- Popup -->
+<div class="popup-overlay" id="popupOverlay">
+
+    <div class="popup">
+
+        <div class="popup-icon" id="popupIcon">
+            💗
+        </div>
+
+        <h2 id="popupTitle">
+            Think Again 💕
+        </h2>
+
+        <p id="popupMessage">
+            Are you sure? Maybe give your heart
+            another little thought. ❤️
+        </p>
+
+        <button
+            type="button"
+            class="popup-button"
+            id="popupButton"
+        >
+            💗 Think Again
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* Get elements */
+
+const yesButton =
+    document.getElementById("yes");
+
+const noButton =
+    document.getElementById("no");
+
+const popupOverlay =
+    document.getElementById("popupOverlay");
+
+const popupIcon =
+    document.getElementById("popupIcon");
+
+const popupTitle =
+    document.getElementById("popupTitle");
+
+const popupMessage =
+    document.getElementById("popupMessage");
+
+const popupButton =
+    document.getElementById("popupButton");
+
+
+/* Open popup */
+
+function openPopup(
+    icon,
+    title,
+    message,
+    buttonText
+) {
+
+    popupIcon.innerHTML = icon;
+
+    popupTitle.innerHTML = title;
+
+    popupMessage.innerHTML = message;
+
+    popupButton.innerHTML = buttonText;
+
+    popupOverlay.classList.add("show");
+}
+
+
+/* Close popup */
+
+function closePopup() {
+
+    popupOverlay.classList.remove("show");
+
+}
+
+
+/* YES button */
+
+yesButton.addEventListener(
+    "click",
+    function () {
+
+        openPopup(
+
+            "💖",
+
+            "You Said Yes! 🥹",
+
+            "You just made my day! ✨<br><br>" +
+            "Thank you, Sana Thourani. ❤️" +
+            "<br><br>" +
+            "I can't wait to make beautiful memories together. 💕",
+
+            "💗 Forever"
+
+        );
+
+    }
+);
+
+
+/* NO button */
+
+noButton.addEventListener(
+    "click",
+    function () {
+
+        openPopup(
+
+            "🥺",
+
+            "Think Again 💗",
+
+            "Are you really sure? 🥺<br><br>" +
+            "Maybe give your heart another little thought… ❤️",
+
+            "💗 Think Again"
+
+        );
+
+    }
+);
+
+
+/* Popup button */
+
+popupButton.addEventListener(
+    "click",
+    function () {
+
+        closePopup();
+
+    }
+);
+
+
+/* Close when tapping outside popup */
+
+popupOverlay.addEventListener(
+    "click",
+    function (event) {
+
+        if (event.target === popupOverlay) {
+            closePopup();
+        }
+
+    }
+);
+
+
+/* Close popup with Escape */
+
+document.addEventListener(
+    "keydown",
+    function (event) {
+
+        if (event.key === "Escape") {
+            closePopup();
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
+.heart-float {
+    position: absolute;
+    bottom: -60px;
+
+    font-size: 20px;
+
+    opacity: 0;
+
+    animation: floatHeart linear infinite;
+}
+
+.heart-float:nth-child(1) {
+    left: 8%;
+    animation-duration: 9s;
+    animation-delay: 1s;
+}
+
+.heart-float:nth-child(2) {
+    left: 23%;
+    animation-duration: 12s;
+    animation-delay: 4s;
+}
+
+.heart-float:nth-child(3) {
+    left: 42%;
+    animation-duration: 10s;
+    animation-delay: 2s;
+}
+
+.heart-float:nth-child(4) {
+    left: 65%;
+    animation-duration: 13s;
+    animation-delay: 5s;
+}
+
+.heart-float:nth-child(5) {
+    left: 82%;
+    animation-duration: 11s;
+    animation-delay: 3s;
+}
+
+@keyframes floatHeart {
+
+    0% {
+        transform:
+            translateY(0)
+            scale(0.7)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 0.8;
+    }
+
+    80% {
+        opacity: 0.5;
+    }
+
+    100% {
+        transform:
+            translateY(-115vh)
+            scale(1.25)
+            rotate(25deg);
+
+        opacity: 0;
+    }
+}
+
+/* ---------- MAIN ---------- */
+
+.wrap {
+    position: relative;
+    z-index: 5;
+
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+}
+
+/* ---------- CARD ---------- */
+
+.card {
+    width: min(92vw, 450px);
+
+    padding: 32px 25px;
+
+    text-align: center;
+
+    border-radius: 32px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.18),
+            rgba(255,255,255,0.06)
+        );
+
+    border: 1px solid rgba(255,255,255,0.35);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,0.45),
+        inset 0 1px 0 rgba(255,255,255,0.2);
+
+    animation: cardAppear 1s ease;
+}
+
+@keyframes cardAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.94);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ---------- HEART ---------- */
+
+.main-heart {
+    width: 82px;
+    height: 82px;
+
+    margin: 0 auto 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 160, 200, 0.20);
+
+    border: 1px solid rgba(255,255,255,0.35);
+
+    box-shadow:
+        0 0 35px rgba(255,100,170,0.45);
+
+    font-size: 43px;
+
+    animation:
+        heartPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes heartPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* ---------- TEXT ---------- */
+
+.small {
+    font-size: 11px;
+    letter-spacing: 3px;
+
+    color: rgba(255,255,255,0.78);
+
+    margin-bottom: 8px;
+}
+
+h1 {
+    margin: 0;
+
+    font-size: clamp(29px, 8vw, 38px);
+
+    font-weight: 700;
+
+    letter-spacing: -1px;
+
+    text-shadow:
+        0 4px 20px rgba(0,0,0,0.35);
+}
+
+.message {
+    margin: 23px 0;
+
+    font-size: 16px;
+
+    line-height: 1.65;
+
+    color: rgba(255,255,255,0.94);
+}
+
+.message b {
+    display: inline-block;
+
+    margin-top: 8px;
+
+    font-size: 19px;
+
+    color: #ffd4e6;
+
+    text-shadow:
+        0 0 15px rgba(255,150,200,0.5);
+}
+
+/* ---------- BUTTONS ---------- */
+
+.buttons {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 14px;
+
+    margin-top: 25px;
+}
+
+button {
+    position: relative;
+
+    min-width: 135px;
+
+    padding: 14px 24px;
+
+    border: 1px solid rgba(255,255,255,0.6);
+
+    border-radius: 50px;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+
+    touch-action: manipulation;
+}
+
+button:active {
+    transform: scale(0.92);
+}
+
+#yes {
+    color: #68163c;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffd1e3,
+            #ff8fbd
+        );
+
+    box-shadow:
+        0 8px 25px rgba(255,100,170,0.4);
+}
+
+#yes:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 35px rgba(255,100,170,0.55);
+}
+
+#no {
+    color: white;
+
+    background:
+        rgba(255,255,255,0.10);
+
+    backdrop-filter: blur(8px);
+}
+
+#no:hover {
+    transform: translateY(-3px);
+
+    background:
+        rgba(255,255,255,0.18);
+}
+
+/* ---------- POPUP ---------- */
+
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+
+    z-index: 100;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(10, 5, 10, 0.65);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.popup-overlay.show {
+    display: flex;
+
+    animation: overlayIn 0.3s ease;
+}
+
+@keyframes overlayIn {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.popup {
+    width: min(90vw, 390px);
+
+    padding: 35px 25px 28px;
+
+    text-align: center;
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.22),
+            rgba(255,255,255,0.08)
+        );
+
+    border: 1px solid rgba(255,255,255,0.4);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,0.55),
+        inset 0 1px 0 rgba(255,255,255,0.25);
+
+    transform: scale(0.8);
+
+    animation: popupIn 0.45s
+        cubic-bezier(.17,.89,.32,1.28)
+        forwards;
+}
+
+@keyframes popupIn {
+
+    to {
+        transform: scale(1);
+    }
+}
+
+.popup-icon {
+    font-size: 55px;
+
+    margin-bottom: 10px;
+
+    animation:
+        heartPulse 1.3s infinite;
+}
+
+.popup h2 {
+    margin: 5px 0 12px;
+
+    font-size: 27px;
+
+    color: #ffd5e6;
+}
+
+.popup p {
+    margin: 0 auto 22px;
+
+    max-width: 310px;
+
+    font-size: 16px;
+
+    line-height: 1.6;
+
+    color: rgba(255,255,255,0.92);
+}
+
+.popup-button {
+    min-width: 160px;
+
+    padding: 13px 25px;
+
+    color: #641638;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffd3e5,
+            #ff91bd
+        );
+
+    box-shadow:
+        0 8px 25px rgba(255,100,170,0.4);
+}
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 420px) {
+
+    .card {
+        padding: 27px 19px;
+        border-radius: 28px;
+    }
+
+    .main-heart {
+        width: 72px;
+        height: 72px;
+        font-size: 38px;
+    }
+
+    .message {
+        font-size: 15px;
+    }
+
+    .buttons {
+        gap: 10px;
+    }
+
+    button {
+        min-width: 125px;
+        padding: 13px 16px;
+    }
+}
+</style>
+</head>
+
+
+<body>
+
+<!-- Floating hearts -->
+<div class="hearts">
+
+    <div class="heart-float">💗</div>
+    <div class="heart-float">💕</div>
+    <div class="heart-float">💖</div>
+    <div class="heart-float">💗</div>
+    <div class="heart-float">💕</div>
+
+</div>
+
+
+<!-- Main page -->
+<div class="wrap">
+
+    <div class="card">
+
+        <div class="main-heart">
+            💗
+        </div>
+
+        <div class="small">
+            A LITTLE QUESTION FOR YOU
+        </div>
+
+        <h1>
+            Sana Thourani
+        </h1>
+
+        <div class="message">
+
+            I don't know how to say this perfectly,
+            <br>
+
+            but I'll try…
+
+            <br><br>
+
+            You are someone I truly admire,
+            and I would love to make some
+            beautiful memories together.
+
+            <br><br>
+
+            <b>
+                Will you be mine? 💕
+            </b>
+
+        </div>
+
+
+        <div class="buttons">
+
+            <button type="button" id="yes">
+                💗 Yes
+            </button>
+
+            <button type="button" id="no">
+                ♡ No
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- Popup -->
+<div class="popup-overlay" id="popupOverlay">
+
+    <div class="popup">
+
+        <div class="popup-icon" id="popupIcon">
+            💗
+        </div>
+
+        <h2 id="popupTitle">
+            Think Again 💕
+        </h2>
+
+        <p id="popupMessage">
+            Are you sure? Maybe give your heart
+            another little thought. ❤️
+        </p>
+
+        <button
+            type="button"
+            class="popup-button"
+            id="popupButton"
+        >
+            💗 Think Again
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* Get elements */
+
+const yesButton =
+    document.getElementById("yes");
+
+const noButton =
+    document.getElementById("no");
+
+const popupOverlay =
+    document.getElementById("popupOverlay");
+
+const popupIcon =
+    document.getElementById("popupIcon");
+
+const popupTitle =
+    document.getElementById("popupTitle");
+
+const popupMessage =
+    document.getElementById("popupMessage");
+
+const popupButton =
+    document.getElementById("popupButton");
+
+
+/* Open popup */
+
+function openPopup(
+    icon,
+    title,
+    message,
+    buttonText
+) {
+
+    popupIcon.innerHTML = icon;
+
+    popupTitle.innerHTML = title;
+
+    popupMessage.innerHTML = message;
+
+    popupButton.innerHTML = buttonText;
+
+    popupOverlay.classList.add("show");
+}
+
+
+/* Close popup */
+
+function closePopup() {
+
+    popupOverlay.classList.remove("show");
+
+}
+
+
+/* YES button */
+
+yesButton.addEventListener(
+    "click",
+    function () {
+
+        openPopup(
+
+            "💖",
+
+            "You Said Yes! 🥹",
+
+            "You just made my day! ✨<br><br>" +
+            "Thank you, Sana Thourani. ❤️" +
+            "<br><br>" +
+            "I can't wait to make beautiful memories together. 💕",
+
+            "💗 Forever"
+
+        );
+
+    }
+);
+
+
+/* NO button */
+
+noButton.addEventListener(
+    "click",
+    function () {
+
+        openPopup(
+
+            "🥺",
+
+            "Think Again 💗",
+
+            "Are you really sure? 🥺<br><br>" +
+            "Maybe give your heart another little thought… ❤️",
+
+            "💗 Think Again"
+
+        );
+
+    }
+);
+
+
+/* Popup button */
+
+popupButton.addEventListener(
+    "click",
+    function () {
+
+        closePopup();
+
+    }
+);
+
+
+/* Close when tapping outside popup */
+
+popupOverlay.addEventListener(
+    "click",
+    function (event) {
+
+        if (event.target === popupOverlay) {
+            closePopup();
+        }
+
+    }
+);
+
+
+/* Close popup with Escape */
+
+document.addEventListener(
+    "keydown",
+    function (event) {
+
+        if (event.key === "Escape") {
+            closePopup();
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
   min-height: 100vh;
 
   display: flex;
