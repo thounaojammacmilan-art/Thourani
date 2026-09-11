@@ -7,34 +7,241 @@
 <title>Sana Thourani 💗</title>
 
 <style>
-*{
-  box-sizing:border-box;
+* {
+  box-sizing: border-box;
 }
 
-body{
-  margin:0;
-  min-height:100vh;
-  overflow:hidden;
-  font-family:Arial,sans-serif;
-  color:white;
-  background:url("IMG_0740.jpeg") center/cover fixed no-repeat;
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  color: white;
+
+  background:
+    url("IMG_0740.jpeg")
+    center/cover fixed no-repeat;
 }
 
-body:before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.30);
-  z-index:0;
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.28);
+  z-index: 0;
 }
 
-.wrap{
-  position:relative;
-  z-index:1;
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+.wrap {
+  position: relative;
+  z-index: 1;
+
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 18px;
+}
+
+.card {
+  width: min(92vw, 430px);
+  max-height: 94vh;
+
+  overflow: auto;
+
+  padding: 25px 20px;
+
+  text-align: center;
+
+  background: rgba(20,15,20,0.42);
+
+  border: 1px solid rgba(255,255,255,0.55);
+
+  border-radius: 28px;
+
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+
+  box-shadow:
+    0 18px 50px rgba(0,0,0,0.35);
+}
+
+.heart {
+  font-size: 42px;
+
+  animation:
+    pulse 1.4s infinite;
+}
+
+.small {
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+h1 {
+  margin: 5px 0 4px;
+
+  font-size: 31px;
+}
+
+.message {
+  font-size: 17px;
+
+  line-height: 1.55;
+
+  margin: 20px 4px;
+}
+
+.buttons {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 14px;
+
+  margin-top: 22px;
+}
+
+button {
+  min-width: 125px;
+
+  padding: 13px 22px;
+
+  border-radius: 30px;
+
+  border: 1px solid white;
+
+  font-size: 17px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+#yes {
+  background: #ff9fc8;
+
+  color: #5d1737;
+}
+
+#no {
+  background: rgba(255,255,255,0.12);
+
+  color: white;
+}
+
+#result {
+  display: none;
+
+  margin-top: 20px;
+
+  font-size: 19px;
+
+  font-weight: bold;
+}
+
+@keyframes pulse {
+
+  50% {
+    transform: scale(1.13);
+  }
+
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="wrap">
+
+  <div class="card">
+
+    <div class="heart">
+      💗
+    </div>
+
+    <div class="small">
+      A LITTLE QUESTION FOR YOU
+    </div>
+
+    <h1>
+      Sana Thourani
+    </h1>
+
+    <div class="message">
+
+      I don't know how to say this perfectly,
+      <br>
+
+      but I'll try…
+      <br><br>
+
+      You are someone I truly admire,
+      and I would love to make some
+      beautiful memories together.
+
+      <br><br>
+
+      <b>
+        Will you be mine? 💕
+      </b>
+
+    </div>
+
+    <div class="buttons">
+
+      <button id="yes" onclick="answerYes()">
+        💗 Yes
+      </button>
+
+      <button id="no" onclick="answerNo()">
+        ♡ No
+      </button>
+
+    </div>
+
+    <div id="result"></div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+function answerYes() {
+
+  const r =
+    document.getElementById("result");
+
+  r.style.display = "block";
+
+  r.innerHTML =
+    "You just made my day! 💖✨" +
+    "<br><br>" +
+    "Thank you, Sana Thourani! ❤️";
+}
+
+
+function answerNo() {
+
+  const r =
+    document.getElementById("result");
+
+  r.style.display = "block";
+
+  r.innerHTML =
+    "That's completely okay. ❤️" +
+    "<br>" +
+    "I respect your choice. 😊";
+}
+
+</script>
+
+</body>
+</html>  justify-content:center;
   padding:18px;
 }
 
